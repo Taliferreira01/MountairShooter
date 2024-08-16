@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 
 from Entity1 import Entity1
-from Entity1 import Entity1
+from Entity1 import Enti
 
 
 class Player(Entity1, Entity1):
