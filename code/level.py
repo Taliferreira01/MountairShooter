@@ -6,7 +6,7 @@ import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT
+from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION
 from code.entity1 import Entity1
 from code.entityFactory import EntityFactory
 
@@ -17,7 +17,10 @@ class Level:
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity1] = []
-        self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))  # pegar obj lista e jogar aqui dentro
+        self.entity_list.extend(EntityFactory.get_entity('Level1Bg')) #imagem level1
+        self.entity_list.append(EntityFactory.get_entity('player1')) #colocar a nave no jogo
+        if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
+            self.entity_list.append(EntityFactory.get_entity('player2'))
         self.timeout = 20000  # 20segundos
 
     def run(self):
