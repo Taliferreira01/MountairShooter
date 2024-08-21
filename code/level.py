@@ -1,12 +1,14 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
+import random
 import sys
 
 import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION
+from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
+from code.EntityMediator import EntityMediator
 from code.entity1 import Entity1
 from code.entityFactory import EntityFactory
 
@@ -22,6 +24,7 @@ class Level:
         if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
             self.entity_list.append(EntityFactory.get_entity('player2'))
         self.timeout = 20000  # 20segundos
+        pygame.time.set_timer(EVENT_ENEMY,SPAWN_TIME) # A determinado tempo surge inimigos
 
     def run(self):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
@@ -38,6 +41,9 @@ class Level:
                 if event.type == pygame.QUIT:  # evento fechar janela
                     pygame.quit()
                     sys.exit()
+                if event.type == EVENT_ENEMY:
+                    choice = random.choice(('Enemy1', 'Enemy2')) #criar inimigos aleatórios
+                    self.entity_list.append(EntityFactory.get_entity(choice))
             # printed text
 
             self.level_text(14, f'{self.name} - Timeout: {self.timeout / 1000:.1f}s', C_WHITE,
@@ -46,8 +52,10 @@ class Level:
             self.level_text(14, f'entidades: {len(self.entity_list)}', C_WHITE,
                             (10, WIN_HEIGHT - 20))  # quantas entidades na tela
             pygame.display.flip()
-
-        pass
+            #collision
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
+            pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
