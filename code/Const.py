@@ -6,8 +6,15 @@ C_YELLOW = (255, 255, 128)
 C_WHITE = (255, 255, 255)
 C_GREEN = (0, 128, 0)
 C_CYAN = (0, 128, 128)
-#E
 # E
+# E
+ENTITY_SHOT_DELAY = {
+    'player1': 5,
+    'player2': 3,
+    'Enemy1': 80,
+    'Enemy2': 150,
+}
+
 EVENT_ENEMY = pygame.USEREVENT + 1
 EVENT_TIMEOUT = pygame.USEREVENT + 2
 ENTITY_SPEED = {
@@ -18,10 +25,14 @@ ENTITY_SPEED = {
     'Level1Bg4': 4,
     'Level1Bg5': 5,
     'Level1Bg6': 6,
-    'player1'  : 5,
-    'player2'  : 5,
-    'Enemy1'   : 3,
-    'Enemy2'   : 2,
+    'player1': 5,
+    'player2': 5,
+    'player1Shot': 4,
+    'player2Shot': 3,
+    'Enemy1': 1,
+    'Enemy2': 1,
+    'Enemy1Shot': 4,
+    'Enemy2Shot': 2
 }
 ENTITY_HEALTH = {
     'Level1Bg0': 999,
@@ -33,13 +44,17 @@ ENTITY_HEALTH = {
     'Level1Bg6': 999,
     'player1': 300,
     'player2': 300,
+    'player1Shot': 1,
+    'player2Shot': 1,
     'Enemy1': 50,
     'Enemy1Shot': 1,
     'Enemy2': 60,
+    'Enemy2Shot': 1
+
 
 }
 
-#M
+# M
 MENU_OPTION = ('NEW GAME 1P',
                'NEW GAME 2P - COOPERATIVE',
                'NEW GAME 2P - COMPETITIVE',
@@ -54,10 +69,11 @@ PLAYER_KEY_LEFT = {'player1': pygame.K_LEFT,
                    'player2': pygame.K_a}
 PLAYER_KEY_RIGHT = {'player1': pygame.K_RIGHT,
                     'player2': pygame.K_d}
+
 PLAYER_KEY_SHOOT = {'player1': pygame.K_RCTRL,
                     'player2': pygame.K_LCTRL}
 
-#S
+# S
 SPAWN_TIME = 4000
 # W
 

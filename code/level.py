@@ -9,8 +9,10 @@ from pygame.font import Font
 
 from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
 from code.EntityMediator import EntityMediator
+from code.enemy import Enemy
 from code.entity1 import Entity1
 from code.entityFactory import EntityFactory
+from code.player import Player
 
 
 class Level:
@@ -19,12 +21,12 @@ class Level:
         self.name = name
         self.game_mode = game_mode
         self.entity_list: list[Entity1] = []
-        self.entity_list.extend(EntityFactory.get_entity('Level1Bg')) #imagem level1
-        self.entity_list.append(EntityFactory.get_entity('player1')) #colocar a nave no jogo
+        self.entity_list.extend(EntityFactory.get_entity('Level1Bg'))  # imagem level1
+        self.entity_list.append(EntityFactory.get_entity('player1'))  # colocar a nave no jogo
         if game_mode in [MENU_OPTION[1], MENU_OPTION[2]]:
             self.entity_list.append(EntityFactory.get_entity('player2'))
         self.timeout = 20000  # 20segundos
-        pygame.time.set_timer(EVENT_ENEMY,SPAWN_TIME) # A determinado tempo surge inimigos
+        pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)  # A determinado tempo surge inimigos
 
     def run(self):
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
@@ -36,13 +38,18 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()  # invocar o movimento
+                if isinstance(ent, (Player, Enemy)):
+                    shoot = ent.shoot()
+                    if shoot is not None:
+                        self.entity_list.append(shoot)
+
             pygame.display.flip()
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:  # evento fechar janela
                     pygame.quit()
                     sys.exit()
                 if event.type == EVENT_ENEMY:
-                    choice = random.choice(('Enemy1', 'Enemy2')) #criar inimigos aleatórios
+                    choice = random.choice(('Enemy1', 'Enemy2'))  # criar inimigos aleatórios
                     self.entity_list.append(EntityFactory.get_entity(choice))
             # printed text
 
@@ -52,9 +59,10 @@ class Level:
             self.level_text(14, f'entidades: {len(self.entity_list)}', C_WHITE,
                             (10, WIN_HEIGHT - 20))  # quantas entidades na tela
             pygame.display.flip()
-            #collision
+            # collision
             EntityMediator.verify_collision(entity_list=self.entity_list)
             EntityMediator.verify_health(entity_list=self.entity_list)
+
             pass
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
