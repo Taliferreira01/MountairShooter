@@ -7,7 +7,7 @@ import pygame.display
 from pygame import Surface, Rect
 from pygame.font import Font
 
-from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
+from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_GREEN, C_CYAN
 from code.EntityMediator import EntityMediator
 from code.enemy import Enemy
 from code.entity1 import Entity1
@@ -42,6 +42,10 @@ class Level:
                     shoot = ent.shoot()
                     if shoot is not None:
                         self.entity_list.append(shoot)
+                if ent.name == 'player1':  # text Level player and health
+                    self.level_text(14, f'player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 25))
+                if ent.name == 'player2':
+                    self.level_text(14, f'player2 - Health: {ent.health} | Score: {ent.score}', C_CYAN, (10, 45))
 
             pygame.display.flip()
             for event in pygame.event.get():
