@@ -13,6 +13,7 @@ ENTITY_SHOT_DELAY = {
     'player2': 3,
     'Enemy1': 80,
     'Enemy2': 150,
+    'Enemy3': 130
 }
 
 EVENT_ENEMY = pygame.USEREVENT + 1
@@ -30,14 +31,22 @@ ENTITY_SPEED = {
     'Level2Bg2': 2,
     'Level2Bg3': 3,
     'Level2Bg4': 4,
+    'Level3Bg0': 0,
+    'Level3Bg1': 1,
+    'Level3Bg2': 2,
+    'Level3Bg3': 3,
+    'Level3Bg4': 4,
+    'Level3Bg5': 5,
     'player1': 5,
     'player2': 5,
     'player1Shot': 4,
     'player2Shot': 3,
     'Enemy1': 1,
     'Enemy2': 1,
+    'Enemy3': 1,
     'Enemy1Shot': 4,
-    'Enemy2Shot': 2
+    'Enemy2Shot': 2,
+    'Enemy3Shot': 3,
 }
 ENTITY_DAMAGE = {
     'Level1Bg0': 0,
@@ -52,6 +61,12 @@ ENTITY_DAMAGE = {
     'Level2Bg2': 0,
     'Level2Bg3': 0,
     'Level2Bg4': 0,
+    'Level3Bg0': 0,
+    'Level3Bg1': 0,
+    'Level3Bg2': 0,
+    'Level3Bg3': 0,
+    'Level3Bg4': 0,
+    'Level3Bg5': 0,
     'player1': 1,
     'player1Shot': 25,
     'player2': 1,
@@ -60,6 +75,8 @@ ENTITY_DAMAGE = {
     'Enemy1Shot': 20,
     'Enemy2': 1,
     'Enemy2Shot': 15,
+    'Enemy3': 1,
+    'Enemy3Shot': 18,
 }
 
 ENTITY_SCORE = {
@@ -75,6 +92,12 @@ ENTITY_SCORE = {
     'Level2Bg2': 0,
     'Level2Bg3': 0,
     'Level2Bg4': 0,
+    'Level3Bg0': 0,
+    'Level3Bg1': 0,
+    'Level3Bg2': 0,
+    'Level3Bg3': 0,
+    'Level3Bg4': 0,
+    'Level3Bg5': 0,
     'player1': 0,
     'player1Shot': 0,
     'player2': 0,
@@ -83,6 +106,8 @@ ENTITY_SCORE = {
     'Enemy1Shot': 0,
     'Enemy2': 125,
     'Enemy2Shot': 0,
+    'Enemy3': 130,
+    'Enemy3Shot': 0,
 
 }
 ENTITY_HEALTH = {
@@ -98,14 +123,22 @@ ENTITY_HEALTH = {
     'Level2Bg2': 999,
     'Level2Bg3': 999,
     'Level2Bg4': 999,
-    'player1': 300,
-    'player2': 300,
+    'Level3Bg0': 999,
+    'Level3Bg1': 999,
+    'Level3Bg2': 999,
+    'Level3Bg3': 999,
+    'Level3Bg4': 999,
+    'Level3Bg5': 999,
+    'player1': 150,
+    'player2': 150,
     'player1Shot': 1,
     'player2Shot': 1,
     'Enemy1': 50,
     'Enemy1Shot': 1,
     'Enemy2': 60,
-    'Enemy2Shot': 1
+    'Enemy2Shot': 1,
+    'Enemy3': 70,
+    'Enemy3Shot': 1
 
 }
 
@@ -115,6 +148,8 @@ MENU_OPTION = ('NEW GAME 1P',
                'NEW GAME 2P - COMPETITIVE',
                'SCORE',
                'EXIT')
+#
+NAME_RU = 'Talita Ferreira - 4709280'
 # P
 PLAYER_KEY_UP = {'player1': pygame.K_UP,
                  'player2': pygame.K_w}

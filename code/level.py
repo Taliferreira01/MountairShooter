@@ -8,7 +8,7 @@ from pygame import Surface, Rect
 from pygame.font import Font
 
 from code.Const import C_WHITE, WIN_HEIGHT, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, C_GREEN, C_CYAN, EVENT_TIMEOUT, \
-    TIMEOUT_STEP, TIMEOUT_LEVEL
+    TIMEOUT_STEP, TIMEOUT_LEVEL, NAME_RU
 from code.EntityMediator import EntityMediator
 from code.enemy import Enemy
 from code.entity1 import Entity1
@@ -31,6 +31,10 @@ class Level:
             player = EntityFactory.get_entity('player2')  # colocar a nave no jogo
             player.score = player_score[1]
             self.entity_list.append(player)
+        if self.name == 'Level3':
+            self.timeout = TIMEOUT_LEVEL * 2
+        else:
+            self.timeout = TIMEOUT_LEVEL
         pygame.time.set_timer(EVENT_ENEMY, SPAWN_TIME)  # A determinado tempo surge inimigos
         pygame.time.set_timer(EVENT_TIMEOUT, TIMEOUT_STEP)  # checar cond de vitória
 
@@ -50,6 +54,7 @@ class Level:
                         self.entity_list.append(shoot)
                 if ent.name == 'player1':  # text Level player and health
                     self.level_text(14, f'player1 - Health: {ent.health} | Score: {ent.score}', C_GREEN, (10, 25))
+                    self.level_text(14, NAME_RU, C_GREEN, (450, 25))
                 if ent.name == 'player2':
                     self.level_text(14, f'player2 - Health: {ent.health} | Score: {ent.score}', C_CYAN, (10, 45))
 
@@ -59,7 +64,11 @@ class Level:
                     pygame.quit()
                     sys.exit()
                 if event.type == EVENT_ENEMY:
-                    choice = random.choice(('Enemy1', 'Enemy2'))  # criar inimigos aleatórios
+                    if self.name == 'Level3':  # Verifica se estamos no nível 3
+                        choice = random.choice(('Enemy3',))  # Apenas Enemy3 para o nível 3
+                    else:
+                        choice = random.choice(
+                            ('Enemy1', 'Enemy2', 'Enemy3'))  # Outros níveis podem ter qualquer inimigo
                     self.entity_list.append(EntityFactory.get_entity(choice))
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
