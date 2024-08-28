@@ -3,9 +3,11 @@
 import random
 
 from code.Const import WIN_WIDTH, WIN_HEIGHT
+from code.Enemy3 import Enemy3
 from code.background import Background
 from code.enemy import Enemy
 from code.player import Player
+
 
 
 class EntityFactory:
@@ -27,7 +29,7 @@ class EntityFactory:
                 return list_bg
             case 'Level3Bg':  # Criou Level 1
                 list_bg = []  # lista de background
-                for i in range(5):  # bg level2 image
+                for i in range(5):  # bg level3 image
                     list_bg.append(Background(f'Level3Bg{i}', (0, 0)))
                     list_bg.append(Background(f'Level3Bg{i}', (WIN_WIDTH, 0)))
                 return list_bg
@@ -40,4 +42,4 @@ class EntityFactory:
             case 'Enemy2':
                 return Enemy('Enemy2', (WIN_WIDTH + 10, random.randint(50, WIN_HEIGHT - 50)))
             case 'Enemy3':
-                return Enemy('Enemy3', (WIN_WIDTH + 10, random.randint(50, WIN_HEIGHT - 50)))
+                return Enemy3('Enemy3', (WIN_WIDTH + 10, random.randint(50, WIN_HEIGHT - 50)))

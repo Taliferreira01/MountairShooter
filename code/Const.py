@@ -166,6 +166,8 @@ PLAYER_KEY_SHOOT = {'player1': pygame.K_RCTRL,
 # S
 SPAWN_TIME = 1000 #criar inimgos na tela 4s
 
+
+
 # T
 TIMEOUT_STEP = 100 #100 MILI S
 TIMEOUT_LEVEL = 20000 # 20 SEG
@@ -189,3 +191,4 @@ SCORE_POS = {'Title': (WIN_WIDTH / 2, 50),
              8: (WIN_WIDTH / 2, 270),
              9: (WIN_WIDTH / 2, 290),
              }
+# V
