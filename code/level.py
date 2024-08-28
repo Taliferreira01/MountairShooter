@@ -67,8 +67,7 @@ class Level:
                     if self.name == 'Level3':  # Verifica se estamos no nível 3
                         choice = random.choice(('Enemy3',))  # Apenas Enemy3 para o nível 3
                     else:
-                        choice = random.choice(
-                            ('Enemy1', 'Enemy2'))  # Outros níveis podem ter qualquer inimigo
+                        choice = random.choice(('Enemy1', 'Enemy2'))  # Outros níveis podem ter qualquer inimigo
                     self.entity_list.append(EntityFactory.get_entity(choice))
                 if event.type == EVENT_TIMEOUT:
                     self.timeout -= TIMEOUT_STEP
