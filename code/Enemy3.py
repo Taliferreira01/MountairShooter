@@ -14,7 +14,7 @@ class Enemy3(Enemy):
 
         # Vertical movement
         if self.moving_down:
-            self.rect.centery += 2 * self.vertical_speed * 2
+            self.rect.centery += 3 * self.vertical_speed * 2
             if self.rect.bottom >= WIN_HEIGHT:
                 self.moving_down = False
         else:
