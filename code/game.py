@@ -21,13 +21,13 @@ class Game:
             menu_return = menu.run()
 
             if menu_return in [MENU_OPTION[0], MENU_OPTION[1], MENU_OPTION[2]]:
-                player_score = [0, 0] # player1, player2
+                player_score = [0, 0]  # player1, player2
                 level = Level(self.window, 'Level1', menu_return, player_score)  # chamada level1
                 level_return = level.run(player_score)
                 if level_return:  # level_return == True.
                     level = Level(self.window, 'Level2', menu_return, player_score)  # chamada level2
                     level_return = level.run(player_score)
-                    if level_return: #caso passe a fase, salve score
+                    if level_return:  # caso passe a fase, salve score
                         level = Level(self.window, 'Level3', menu_return, player_score)  # chamada level2
                         level_return = level.run(player_score)
 
